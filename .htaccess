@@ -1,0 +1,18 @@
+# Enable the Rewrite Engine
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  
+  # Rewrite rules to remove the .php extension
+  # Match URLs with /filename and rewrite them to /filename.php
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteRule ^([^/]+)$ $1.php [L]
+
+
+
+  # Redirect /profiles/123 to /profiles.php?profile_id=123
+  RewriteRule ^profiles/([0-9]+)$ profiles.php?profile_id=$1 [L]
+
+  # Redirect /messages/123 to /messages.php?connection_id=123
+  RewriteRule ^messages/([0-9]+)$ messages.php?profile_id=$1 [L]
+
+</IfModule>
